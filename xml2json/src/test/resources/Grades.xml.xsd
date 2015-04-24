@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="grade">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="student-id"/>
+        <xs:element type="xs:string" name="type"/>
+        <xs:element type="xs:float" name="score"/>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="id"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<student>
+<name>Joe</name>
+<last-name>Smith</last-name>
+<grade>
+<score>9.789</score>
+<type>exam</type>
+</grade>
+</student>

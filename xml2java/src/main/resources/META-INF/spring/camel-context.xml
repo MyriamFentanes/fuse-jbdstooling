@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configures the Camel Context -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<!-- here is a sample which processes the input files (leaving them in place 
+		- see the 'noop' flag) then performs content based routing on the message 
+		using XPath -->
+	<camelContext xmlns="http://camel.apache.org/schema/spring">
+  <endpoint uri="dozer:xml2java?sourceModel=student.Student&amp;targetModel=xml2java.Student&amp;unmarshalId=student&amp;mappingFile=xml2java-transformation.xml" id="xml2java"/>
+  <dataFormats>
+    <jaxb contextPath="student" id="student"/>
+  </dataFormats>
+  <route>
+    <from uri="file:src/data/xml2java?noop=true"/>
+    <log message="[Testing  XML to Java transformation] Before: ${body}"/>
+    <to ref="xml2java"/>
+   <log message="[Testing  XML to Java transformation] After: ${body.name} has the grade ${body.grade}"/>
+   </route>
+</camelContext>
+</beans>

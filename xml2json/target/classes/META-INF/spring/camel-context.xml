@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configures the Camel Context -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<!-- here is a sample which processes the input files (leaving them in place 
+		- see the 'noop' flag) then performs content based routing on the message 
+		using XPath -->
+	<camelContext xmlns="http://camel.apache.org/schema/spring">
+  <endpoint uri="dozer:xml2json?sourceModel=grades.Grade&amp;targetModel=scores.Scores&amp;marshalId=transform-json&amp;unmarshalId=grades&amp;mappingFile=xml2json-transformation.xml" id="xml2json"/>
+  <dataFormats>
+    <jaxb contextPath="grades" id="grades"/>
+    <json library="Jackson" id="transform-json"/>
+  </dataFormats>
+  <route>
+    <from uri="file:src/data/xml2json?noop=true"/>
+    <log message="[Testing XML to JSON  transformation] Before: ${body}"/>
+    <to ref="xml2json"/>
+    <log message="[Testing XML to JSON  transformation] After: ${body}"/>
+  </route>
+</camelContext>
+</beans>
