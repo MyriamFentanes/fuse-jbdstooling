@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <configuration>
+        <wildcard>false</wildcard>
+    </configuration>
+    <mapping>
+        <class-a>grades.Grade</class-a>
+        <class-b>student.Student</class-b>
+        <field>
+            <a>score</a>
+            <b>grade.score</b>
+        </field>
+        <field custom-converter-id="_customMapping" custom-converter-param="com.redhat.transformation.custom.ExamTransformation,transform">
+            <a>type</a>
+            <b>grade.type</b>
+        </field>
+    </mapping>
+</mappings>
